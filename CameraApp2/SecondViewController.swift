@@ -8,20 +8,16 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PhotosDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var images = [UIImage]()
+    var images1 = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
-//        tableView.beginUpdates()
-//        tableView.insertRows(at: [IndexPath(row: images.count-1, section: 0)], with: .automatic)
-//        tableView.endUpdates()
     }
     
     // TableView methods
@@ -31,12 +27,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return images1.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuse") as! TableViewCell
-        cell.picture.image = images[indexPath.row]
+        cell.picture.image = images1[indexPath.row]
         return cell
     }
     
@@ -48,20 +44,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "backsg" {
-            let otherVc = segue.destination as! ViewController
-            otherVc.images = images
+            let otherVc: ViewController = segue.destination as! ViewController
+            otherVc.delegate = self
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func photosMethod(photos: [UIImage]) {
+        images1 = photos
     }
-    */
-
 }

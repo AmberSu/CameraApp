@@ -8,13 +8,18 @@
 
 import UIKit
 
+protocol PhotosDelegate: class {
+    func photosMethod(photos: [UIImage])
+}
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     
     var imagePicker: UIImagePickerController!
-    
     var images = [UIImage]()
+    
+    weak var delegate: PhotosDelegate?
     
     // method for adding pictures from camera or library
     
@@ -66,13 +71,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // methods for showing all pictures
     
     @IBAction func showImages(_ sender: UIButton) {
-        performSegue(withIdentifier: "segue", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segue" {
-            let otherVc = segue.destination as! SecondViewController
-            otherVc.images = images
+        //performSegue(withIdentifier: "segue", sender: self)
+        if delegate != nil {
+            delegate?.photosMethod(photos: images)
         }
     }
     
@@ -87,4 +88,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+
+
 
