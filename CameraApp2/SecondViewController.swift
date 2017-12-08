@@ -12,7 +12,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
-    var images1 = [UIImage]()
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +27,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images1.count
+        return images.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuse") as! TableViewCell
-        cell.picture.image = images1[indexPath.row]
+        cell.picture.image = images[indexPath.row]
         return cell
     }
     
@@ -42,14 +42,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         performSegue(withIdentifier: "backsg", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "backsg" {
-            let otherVc: ViewController = segue.destination as! ViewController
-            otherVc.delegate = self
-        }
-    }
+    // delegate method
     
     func photosMethod(photos: [UIImage]) {
-        images1 = photos
+        images = photos
+        print("second view \(images)")
     }
 }

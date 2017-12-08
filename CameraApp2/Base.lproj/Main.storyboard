@@ -69,6 +69,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Xid-w4-o0z"/>
                     <connections>
                         <outlet property="imageView" destination="Ev4-H2-PBv" id="xug-TD-c85"/>
                     </connections>
@@ -81,7 +82,7 @@
         <scene sceneID="p1X-dz-bbe">
             <objects>
                 <viewController id="gIp-CH-d1D" customClass="SecondViewController" customModule="CameraApp2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="350" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TpA-mY-Y0i">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="350" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TpA-mY-Y0i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,6 +113,7 @@
                             <outletCollection property="gestureRecognizers" destination="9VP-Q9-jpd" appends="YES" id="dCj-oc-hM7"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="AEr-vk-OzN"/>
                     <connections>
                         <outlet property="tableView" destination="TpA-mY-Y0i" id="TUA-xr-HWW"/>
                     </connections>
