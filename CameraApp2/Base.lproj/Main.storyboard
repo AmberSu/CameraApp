@@ -87,6 +87,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <color key="separatorColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="reuse" rowHeight="350" id="sJk-N6-Fuv" customClass="TableViewCell" customModule="CameraApp2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="350"/>
@@ -96,7 +97,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iZR-SU-C1r">
-                                            <rect key="frame" x="0.0" y="11" width="414" height="328"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="319"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -116,13 +117,13 @@
                     <navigationItem key="navigationItem" id="AEr-vk-OzN"/>
                     <connections>
                         <outlet property="tableView" destination="TpA-mY-Y0i" id="TUA-xr-HWW"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="backsg" id="94j-5W-c0c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gx7-4d-GcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="9VP-Q9-jpd">
+                <swipeGestureRecognizer direction="right" id="9VP-Q9-jpd">
                     <connections>
-                        <action selector="swipeLeft:" destination="gIp-CH-d1D" id="mHd-la-iBq"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backsg" id="bZv-7f-YzA"/>
+                        <action selector="swipeRight:" destination="gIp-CH-d1D" id="mHd-la-iBq"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

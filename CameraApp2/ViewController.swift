@@ -15,11 +15,13 @@ protocol PhotosDelegate {
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
-    
     var imagePicker: UIImagePickerController!
     var images = [UIImage]()
-    
     var delegate: PhotosDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     // method for adding pictures from camera or library
     
@@ -71,10 +73,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // methods for sending images to the second view
     
     @IBAction func showImages(_ sender: UIButton) {
-        print("first view \(images)")
         if !images.isEmpty {
             delegate?.photosMethod(photos: images)
-        }
+        } 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

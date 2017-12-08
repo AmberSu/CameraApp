@@ -36,16 +36,33 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            images.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+    }
+    
     // methods for showing main screen
     
-    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         performSegue(withIdentifier: "backsg", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backsg" {
+            let otherVc: ViewController = segue.destination as! ViewController
+            otherVc.images = images
+        }
     }
     
     // delegate method
     
     func photosMethod(photos: [UIImage]) {
         images = photos
-        print("second view \(images)")
     }
 }
