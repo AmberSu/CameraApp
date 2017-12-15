@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreImage
 
 protocol PhotosDelegate {
     func photosMethod(photos: [UIImage])
@@ -15,12 +16,13 @@ protocol PhotosDelegate {
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
-    var imagePicker: UIImagePickerController!
+    var imagePicker = UIImagePickerController()
     var images = [UIImage]()
     var delegate: PhotosDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
     }
     
     // method for adding pictures from camera or library
@@ -93,7 +95,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imageView.image = image
             images.append(image)
         }
+        detectRectangle()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func detectRectangle() {
+        if let myImage = CIImage(image: imageView.image!) {
+            let accuracy = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+            let rectangleDetector = CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: accuracy)
+            let rectangles = rectangleDetector?.features(in: myImage, options: [:])
+            
+            if rectangles != nil && !rectangles!.isEmpty {
+                for rectangle in rectangles! as! [CIRectangleFeature] {
+                    print("rectangle detected!!!!!!!!!!!!")
+                    imageView.image = UIImage(named: "rect")
+                }
+            }
+        }
     }
 }
 
